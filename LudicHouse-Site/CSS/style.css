@@ -25,7 +25,7 @@ nav {
 }
 
 .banner {
-	background-image: linear-gradient(rgba(0, 0, 0, 0.877), rgba(0, 0, 0, 0.808));
+	
 	width: 100%;
 	height: 100vh;
 	background-size: cover;	
@@ -106,7 +106,7 @@ nav {
 
 .spacing {
 	margin-top: 400px;
-	width: 1000px;
+	width: 100vw;
 	background-color: #fff;
 }
  body::-webkit-scrollbar {
@@ -121,7 +121,7 @@ nav {
   }
 
   section{
-    width: 100%;
+    width: 92%;
     height: 400px;
     text-align: center;
     padding: 40px 4%;
@@ -142,18 +142,23 @@ section p{
     text-align: justify;
 }
 
-section:nth-of-type(2){
-    background-image: url('https://www.teahub.io/photos/full/0-5580_desktop-backgrounds-anime..jpg');
+section:nth-of-type(1){
+	animation: changeBackgroundColor 22s infinite;
+	background-image: linear-gradient(rgba(0, 0, 0, 0.877), rgba(0, 0, 0, 0.808));
+	height: 100vh;
 }
 
-section:nth-of-type(4){
+section:nth-of-type(3){
     background-image: url('https://images3.alphacoders.com/704/thumb-1920-704387.png');
+	height: 73vh;
 }
 
-section:nth-of-type(6){
+section:nth-of-type(5){
     background-image: url('https://www.teahub.io/photos/full/17-178334_anime-desktop-background-anime-desktop-backgrounds.jpg');
+	height: 73vh;
 }
 
-section:nth-of-type(8){
+section:nth-of-type(7){
     background-image: url('https://images6.alphacoders.com/828/thumb-1920-828267.png');
+	height: 73vh;
 }
