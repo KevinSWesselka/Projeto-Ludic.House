@@ -116,10 +116,10 @@ nav {
 	background-color: #fff;
 }
  body::-webkit-scrollbar {
-    width: 12px;             
+    width: 8px;             
   }
   body::-webkit-scrollbar-track {
-    background: black;  
+    background: rgba(230, 230, 230, 0.801);  
   }
   body::-webkit-scrollbar-thumb {
     background-color: #262626;   
@@ -183,4 +183,12 @@ section .logo {
 	width: 50vw;
 	margin-left: 25%;
 
+}
+
+.tocador {
+	display: flex;
+	margin-left: 75vw;
+	margin-top: 88vh;
+	align-self: center;
+	position: fixed;
 }
