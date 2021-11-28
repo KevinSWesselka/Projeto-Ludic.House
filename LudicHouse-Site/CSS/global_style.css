@@ -151,6 +151,10 @@ section:nth-of-type(1){
 	height: 97vh;
 }
 
+section:nth-of-type(2){
+	height: 52vh;
+}
+
 section:nth-of-type(3){
     background-image: url('https://www.teahub.io/photos/full/5-57027_guitar-wallpaper-4k.jpg');
 	height: 73vh;
@@ -166,12 +170,22 @@ section:nth-of-type(7){
 	height: 73vh;
 }
 
+section:nth-of-type(8){
+	height: 20vh;
+}
+
 	/*https://images.unsplash.com/photo-1621784166258-c6fdfff31879?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80*/
 
 section .logo {
 	margin-top: 10%;
-	width: 10vw;
+	width: 8vw;
 	text-align: center;
+}
+
+section .footer_img {
+	height: 10px;
+	text-align: center;
+	margin-bottom: 10vh;
 }
 
 .pequeno_momento {
@@ -203,4 +217,23 @@ section .logo {
 	height: 20vh;
 	position: absolute;
 	display: flex;
+}
+
+.player {
+	background-color: #0f0f0fc4;
+	margin-top: 18px;
+	height: 90vh;
+}
+
+.player_function {
+	background-color: #000;
+	height: 16vh;
+	margin-top: 71vh;
+}
+
+.player_function button {
+	background-color: rgba(0, 0, 0, 0);
+	border: 1cm;
+	color: #fff;
+	cursor: pointer;
 }
