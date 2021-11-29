@@ -109,6 +109,7 @@ nav {
 	width: 100vw;
 	background-color: #fff;
 }
+
  body::-webkit-scrollbar {
     width: 8px;             
   }
@@ -222,12 +223,13 @@ section .footer_img {
 .player {
 	background-color: #0f0f0fc4;
 	margin-top: 18px;
-	height: 90vh;
+	height: 100vh;
 }
 
 .player_function {
-	background-color: #000;
+	background-color: rgb(10, 10, 10);
 	height: 16vh;
+	margin-top: 1vh;
 }
 
 .player_function button {
@@ -254,9 +256,10 @@ section .footer_img {
 	margin-right: 50vw;
 	color: #fff;
 	overflow-x: auto;
-	height: 26vh;
+	height: 32vh;
 	width: 59vw;
 	margin-left: 15vw;
+	margin-top: 5vh;
 }
 
 #quanti_like{
