@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="./assest/img/Ludic_moon-bg-removebg-preview.png" />
+    <title>Ludci .Cadastro</title>
+
+
+    <script src="./js/funcoes.js"></script>
+
+    <link rel="icon" href="./assets/icon/favicon.ico">
+    <link rel="stylesheet" href="./css/logcad_style.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
+</head>
+
+<body class="bg_logcad"> 
+
+    <div class="banner-login ">
+        <div class="container ">
+            <div class="card medio">      
+            <img src="./assest/img/Ludic_moon-bg-removebg-preview.png" title="Ludic.Moon" class="logo_logcad">
+            <h1>Torne-se agora um<br/> .Ludic </h1>
+                <div class="formulario">
+                    <div id="form_cadastro">
+                        <h3>Ludic .Cadastro</h3>
+                        Nome:
+                        <br>
+                        <input id="nome_input" type="text" placeholder="Kevin Wesselka">
+                        <p/>
+                        E-mail:
+                        <br>
+                        <input id="email_input" type="text" placeholder="meuemail@provedor.com">
+                        <p/>
+                        Senha:
+                        <br>
+                        <input id="senha_input" type="password" placeholder="******">
+                        <p/>
+                        Confirmar Senha:
+                        <br>
+                        <input id="confirmacao_senha_input" type="password" placeholder="******">
+                        <p/>
+                        Estilo de Musica:
+                        <br>
+                        <input id="estilo_input" type="text" placeholder="Fingstyle">
+                        <p/>
+                        <p>Já é um .Ludic? <a href="./login.html" class="a_color"><br/> Logar agora! </a></p>
+                        <button class="btn" onclick="cadastrar()">.Cadastrar</button>
+                    </div>
+                </div>
+                <div id="div_aguardar" class="loading-div">s
+                    <img src="./assets/circle-loading.gif" id="loading-gif">
+                </div>
+
+                <div id="div_erros_login">
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>
+
+<script>
+
+    function cadastrar() {
+        aguardar();
+
+        var nomeVar = nome_input.value;
+        var emailVar = email_input.value;
+        var senhaVar = senha_input.value;
+        var confirmacaoSenhaVar = confirmacao_senha_input.value;
+        var estiloVar = estilo_input.value;
+
+        if (nomeVar == "" || emailVar == "" || senhaVar == "" || confirmacaoSenhaVar == "" || estiloVar == "") {
+
+            window.alert("Preencha todos os campos para prosseguir!");
+            if (nomeVar == "") {
+                console.log('nome está em branco')
+            }
+            if (emailVar == "") {
+                console.log('email está em branco')
+            }
+            if (senhaVar == "") {
+                console.log('senha está em branco')
+            }
+            if (confirmacaoSenhaVar == "") {
+                console.log('confirmacaoSenha está em branco')
+            }
+            if (estiloVar == "") {
+                console.log('Estilo não definido')
+            }
+            finalizarAguardar();
+            return false;
+        }
+
+        if (emailVar.indexOf("@") == -1 || emailVar.indexOf(".com") == -1) {
+            window.alert("Ops, e-mail inválido! Verifique e tente novamente.");
+            finalizarAguardar();
+            return false;
+        }
+
+        if (senhaVar != confirmacaoSenhaVar) {
+            window.alert("As senhas inseridas devem ser iguais para prosseguir!");
+            finalizarAguardar();
+            return false;
+        }
+
+        fetch("/usuarios/cadastrar", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                nomeServer: nomeVar,
+                emailServer: emailVar,
+                senhaServer: senhaVar,
+                estiloSecer: estiloVar
+            })
+        }).then(function (resposta) {
+
+            console.log("resposta: ", resposta);
+
+            if (resposta.ok) {
+                window.alert("Bem vindo ao Ludic.House");
+                window.location = "login.html";
+                limparFormulario();
+                finalizarAguardar();
+            } else {
+                throw ("Houve um erro ao tentar realizar o cadastro!");
+            }
+        }).catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+            finalizarAguardar();
+        });
+        return false;
+    }
+
+</script>
