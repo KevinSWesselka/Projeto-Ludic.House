@@ -28,9 +28,6 @@
                 <div class="formulario">
                     <div id="form_cadastro">
                         <h3>Ludic .Login</h3>
-                        Nome:
-                        <br>
-                        <input id="nome_input" type="text" placeholder="Kevin Wesselka">
                         <p/>
                         E-mail:
                         <br>
@@ -41,7 +38,7 @@
                         <input id="senha_input" type="password" placeholder="******">
                         <p/>
                         <p>Ainda não é um .Ludic? <a href="./cadastro.html" class="a_color"><br/> Juntesse agora! </a></p>
-                        <button class="btn" onclick="cadastrar()">.Ludic</button>
+                        <button class="btn" onclick="entrar()">.Ludic</button>
                     </div>
                 </div>
                 <div id="div_aguardar" class="loading-div">
@@ -61,7 +58,6 @@
 
 <script>
     function entrar() {
-        aguardar();
 
         var emailVar = email_input.value;
         var senhaVar = senha_input.value;
@@ -72,13 +68,11 @@
         // TODO: VERIFICAR AS VALIDAÇÕES QUE ELES ESTÃO APRENDENDO EM ALGORITMOS 
         if (emailVar == "" || senhaVar == "") {
             window.alert("Preencha todos os campos para prosseguir!");
-            finalizarAguardar();
             return false;
         }
 
         if (emailVar.indexOf("@") == -1 || emailVar.indexOf(".com") == -1) {
             window.alert("Ops, e-mail inválido! Verifique e tente novamente.");
-            finalizarAguardar();
             return false;
         }
 
@@ -106,7 +100,7 @@
                     sessionStorage.ID_USUARIO = json.id;
 
                     setTimeout(function () {
-                        window.location = "./dashboard/cards.html";
+                        window.location = "./index.html";
                     }, 1000); // apenas para exibir o loading
 
                 });
@@ -117,7 +111,6 @@
 
                 resposta.text().then(texto => {
                     console.error(texto);
-                    finalizarAguardar(texto);
                 });
             }
 
