@@ -8,6 +8,7 @@ var PORTA = 3333;
 
 var app = express();
 
+var curtidaRouter = require("./src/routes/curtida.js");
 var indexRouter = require("./src/routes/index");
 var usuarioRouter = require("./src/routes/usuarios");
 var avisosRouter = require("./src/routes/avisos");
@@ -23,6 +24,7 @@ app.use("/", indexRouter);
 app.use("/usuarios", usuarioRouter);
 app.use("/avisos", avisosRouter);
 app.use("/medidas", medidasRouter)
+app.use("/curtida", curtidaRouter)
 
 app.listen(PORTA, function () {
     console.log(`Servidor do site está rodando rodando: http://localhost:${PORTA} \n

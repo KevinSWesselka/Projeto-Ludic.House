@@ -280,6 +280,7 @@ Preso dentro de mim<br/>
     var cont_play = 0
     var cont_like = 0
     var musi1 = document.getElementById('musica1')
+    var nome_music = 'Unravel Tokyo Ghoul';
 
     function btn_play(){
         play_on = true
@@ -319,9 +320,40 @@ Preso dentro de mim<br/>
                             <img src="./assest/img/like_ativo-removebg-preview.png" style="width: 4vw; margin-bottom: 30%; margin-right: 11px;" title='Retirar Curtida'>
                         </button>
                     <span/>`;
+
+                        var like_onVar = 'like_on';
+                        var music0 = 20;
+
                     quantidade_like.innerHTML = `${cont_like}`
+
+                        fetch("/curtida/btn_like", {
+                            method: "POST",
+                            headers: {
+                                "Content-Type": "application/json"
+                            },
+                            body: JSON.stringify({
+                                like_onServer: like_onVar,
+                                music0Sever: music0
+                            })
+                        }).then(function (resposta) {
+
+                            console.log("resposta: ", resposta);
+
+                            if (resposta.ok) {
+                                window.alert("Cadastro realizado com sucesso!");
+                                window.location = "login.html";
+                                limparFormulario();
+                            } else {
+                                throw ("Houve um erro ao tentar realizar o cadastro!");
+                            }
+                        }).catch(function (resposta) {
+                            console.log(`#ERRO: ${resposta}`);
+                        });
+
+                        return false;
+                    }
             }
-    }
+
 
     function btn_removeL(){
         like_on = false
@@ -333,8 +365,37 @@ Preso dentro de mim<br/>
                             <img src="./assest/img/Lua_menor-removebg-preview.png" style="width: 4vw; margin-bottom: 30%; margin-right: 11px;" title="Curtir">
                         </button>
                     <span/>`
+
+                    var like_onVar = 'like_off';
+
                     quantidade_like.innerHTML = `${cont_like}`
+
+                        fetch("/usuarios/cadastrar", {
+                            method: "POST",
+                            headers: {
+                                "Content-Type": "application/json"
+                            },
+                            body: JSON.stringify({
+                                like_onServer: like_onVar
+                            })
+                        }).then(function (resposta) {
+
+                            console.log("resposta: ", resposta);
+
+                            if (resposta.ok) {
+                                window.alert("Cadastro realizado com sucesso!");
+                                window.location = "login.html";
+                                limparFormulario();
+                            } else {
+                                throw ("Houve um erro ao tentar realizar o cadastro!");
+                            }
+                        }).catch(function (resposta) {
+                            console.log(`#ERRO: ${resposta}`);
+                        });
+
+                        return false;
+                    }
             }
-    }
+
 
 </script>

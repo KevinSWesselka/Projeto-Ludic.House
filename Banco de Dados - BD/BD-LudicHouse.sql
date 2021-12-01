@@ -1,29 +1,38 @@
-create database tb_LudicHouse;
-use tb_LudicHouse;
+create database db_ludichouse;
+use db_ludichouse;
 
-create table tb_usuario (
-id_usuario int primary key auto_increment,
-nome_usuario varchar(45),
-email_usuario varchar(45),
-senha_usuario varchar(45),
-estilo_musical varchar(45)
+create table usuario (
+id int primary key auto_increment,
+nome varchar(45),
+email varchar(45),
+senha varchar(45),
+estilo varchar(45)
 )auto_increment = 10;
-select * from tb_usuario;
+select * from usuario;
 
-create table tb_musica (
-id_usuario int primary key auto_increment,
-nome_musica varchar(45),
+create table musica (
+id int primary key auto_increment,
+nome varchar(45),
 altor varchar(45),
-genero_musica varchar(45)
+genero varchar(45)
 )auto_increment = 20;
-select * from tb_musica;
+select * from musica;
 
-create table tb_curtida (
-id_curtida int,
+create table curtida (
 fk_musica int,
 fk_usuario int,
-primary key (id_curtida, fk_musica, fk_usuario),
-foreign key (fk_usuario) references tb_usuario(id_usuario),
-foreign key (fk_musica) references tb_musica(id_usuario)
+primary key (fk_musica, fk_usuario),
+foreign key (fk_usuario) references usuario(id),
+foreign key (fk_musica) references musica(id)
 );
-select * from tb_curtida;
+select * from curtida;
+
+insert into musica values 
+(20,'Unravel Tokyo Ghoul', 'Toru Kitajima', 'Rock Alternativo'),
+(21, 'Noragami Aragoto - Kyouran Hey Kids!!', 'Takuya Yamanaka', 'Rock'),
+(22,'Sword Art Online CROSSING FIELD', 'Lisa-Sho Watanabe', 'Rock Alternativo');
+
+insert into usuario values
+(10, 'Braian', 'Braina@gmail.com', '12345', 'FinStyle');
+
+-- update favorito set curtiu = '${var}' where fk_usuario = '${var_u}' and fk_musica = '${var_m}';
