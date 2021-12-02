@@ -2,28 +2,10 @@
 var curtidaModel = require("../models/curtidaModel");
 var sessoes = [];
 
-function listar_curtida(req, res) {
-    curtidaModel.listar_curtida()
-        .then(function (resultado) {
-            if (resultado.length > 0) {
-                res.status(200).json(resultado);
-            } else {
-                res.status(204).send("Nenhum resultado encontrado!")
-            }
-        }).catch(
-            function (erro) {
-                console.log(erro);
-                console.log("Houve um erro ao realizar a consulta! Erro: ", erro.sqlMessage);
-                res.status(500).json(erro.sqlMessage);
-            }
-        );
-}
-
 function btn_like(req, res) {
-    var curtiu = req.body.like_onServer;
-    var fk_musica = req.body.music0Sever;
+    var fk_musica = req.body.nome_musicServer;
         
-        curtidaModel.btn_like(curtiu,fk_musica)
+        curtidaModel.btn_like(fk_musica)
             .then(
                 function (resultado) {
                     res.json(resultado);
@@ -40,7 +22,24 @@ function btn_like(req, res) {
             );
     }
 
+    function listar(req, res) {
+    usuarioModel.listar()
+        .then(function (resultado) {
+            if (resultado.length > 0) {
+                res.status(200).json(resultado);
+            } else {
+                res.status(204).send("Nenhum resultado encontrado!")
+            }
+        }).catch(
+            function (erro) {
+                console.log(erro);
+                console.log("Houve um erro ao realizar a consulta! Erro: ", erro.sqlMessage);
+                res.status(500).json(erro.sqlMessage);
+            }
+        );
+}
+
 module.exports = {
     btn_like,
-    listar_curtida
+    listar
 }
