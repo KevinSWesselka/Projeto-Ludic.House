@@ -151,19 +151,39 @@ section:nth-of-type(1){
 	height: 97vh;
 }
 
+section:nth-of-type(2){
+	height: 82vh;
+}
+
 section:nth-of-type(3){
-    background-image: url('https://www.teahub.io/photos/full/5-57027_guitar-wallpaper-4k.jpg');
+    background-image: url('https://santhatela.com.br/wp-content/uploads/2020/05/hals-bobo-da-corte-tocando-alaude-d.jpg');
 	height: 73vh;
+}
+
+section:nth-of-type(4){
+	height: 79vh;
+}
+
+section:nth-of-type(4){
+	height: 83vh;
 }
 
 section:nth-of-type(5){
-    background-image: url('https://www.teahub.io/photos/full/183-1839887_moon-and-stars-wallpaper-1497-data-src-moon.jpg');
+    background-image: url('https://static.dw.com/image/51105363_605.png');
 	height: 73vh;
 }
 
+section:nth-of-type(6){	 
+	height: 84vh;
+}
+
 section:nth-of-type(7){
-    background-image: url('https://www.teahub.io/photos/full/160-1604451_gibson-gospel-acoustic-guitar-hd-pictures-wallpaper-guitar.jpg');
+    background-image: url('https://www.violaobrasileiro.com.br/app/webroot/files/uploads/ckfinder/images/The%20Guitar%20Player%20-%20Vermeer.jpg');
 	height: 73vh;
+}
+
+section:nth-of-type(8){
+	height: 3vh;
 }
 
 section .logo {
@@ -188,4 +208,11 @@ section .logo {
 	margin-top: 88vh;
 	align-self: center;
 	position: fixed;
+}
+
+
+section .footer_img {
+	height: 10px;
+	text-align: center;
+	margin-bottom: 10vh;
 }

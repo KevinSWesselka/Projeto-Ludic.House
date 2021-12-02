@@ -1,0 +1,214 @@
+fetch BTN_LIKE
+
+quantidade_like.innerHTML = `${cont_like}`
+
+                        fetch("/curtida/btn_like", {
+                            method: "POST",
+                            headers: {
+                                "Content-Type": "application/json"
+                            },
+                            body: JSON.stringify({
+                                like_onServer: like_onVar,
+                                music0Sever: music0
+                            })
+                        }).then(function (resposta) {
+
+                            console.log("resposta: ", resposta);
+
+                            if (resposta.ok) {
+                                window.alert("Cadastro realizado com sucesso!");
+                                window.location = "login.html";
+                                limparFormulario();
+                            } else {
+                                throw ("Houve um erro ao tentar realizar o cadastro!");
+                            }
+                        }).catch(function (resposta) {
+                            console.log(`#ERRO: ${resposta}`);
+                        });
+
+fetch BTN_REMOVELIKE
+
+ quantidade_like.innerHTML = `${cont_like}`
+
+                        fetch("/usuarios/cadastrar", {
+                            method: "POST",
+                            headers: {
+                                "Content-Type": "application/json"
+                            },
+                            body: JSON.stringify({
+                                like_onServer: like_onVar
+                            })
+                        }).then(function (resposta) {
+
+                            console.log("resposta: ", resposta);
+
+                            if (resposta.ok) {
+                                window.alert("Cadastro realizado com sucesso!");
+                                window.location = "login.html";
+                                limparFormulario();
+                            } else {
+                                throw ("Houve um erro ao tentar realizar o cadastro!");
+                            }
+                        }).catch(function (resposta) {
+                            console.log(`#ERRO: ${resposta}`);
+                        });
+
+                        return false;
+
+contrllers 
+
+
+var curtidaModel = require("../models/curtidaModel");
+var sessoes = [];
+
+function btn_like(req, res) {
+    var fk_musica = req.body.nome_musicServer;
+        
+        curtidaModel.btn_like(fk_musica)
+            .then(
+                function (resultado) {
+                    res.json(resultado);
+                }
+            ).catch(
+                function (erro) {
+                    console.log(erro);
+                    console.log(
+                        "\nHouve um erro ao realizar o cadastro! Erro: ",
+                        erro.sqlMessage
+                    );
+                    res.status(500).json(erro.sqlMessage);
+                }
+            );
+    }
+
+    function btn_like1(req, res) {
+        var fk_musica = req.body.nome_musicServer;
+            
+            curtidaModel.btn_like1(fk_musica)
+                .then(
+                    function (resultado) {
+                        res.json(resultado);
+                    }
+                ).catch(
+                    function (erro) {
+                        console.log(erro);
+                        console.log(
+                            "\nHouve um erro ao realizar o cadastro! Erro: ",
+                            erro.sqlMessage
+                        );
+                        res.status(500).json(erro.sqlMessage);
+                    }
+                );
+        }
+
+        function btn_like2(req, res) {
+            var fk_musica = req.body.nome_musicServer;
+                
+                curtidaModel.btn_like2(fk_musica)
+                    .then(
+                        function (resultado) {
+                            res.json(resultado);
+                        }
+                    ).catch(
+                        function (erro) {
+                            console.log(erro);
+                            console.log(
+                                "\nHouve um erro ao realizar o cadastro! Erro: ",
+                                erro.sqlMessage
+                            );
+                            res.status(500).json(erro.sqlMessage);
+                        }
+                    );
+            }
+
+    function listar(req, res) {
+    usuarioModel.listar()
+        .then(function (resultado) {
+            if (resultado.length > 0) {
+                res.status(200).json(resultado);
+            } else {
+                res.status(204).send("Nenhum resultado encontrado!")
+            }
+        }).catch(
+            function (erro) {
+                console.log(erro);
+                console.log("Houve um erro ao realizar a consulta! Erro: ", erro.sqlMessage);
+                res.status(500).json(erro.sqlMessage);
+            }
+        );
+}
+
+module.exports = {
+    btn_like,
+    btn_like1,
+    btn_like2,
+    listar
+}
+
+models
+
+
+var database = require("../database/config")
+
+
+function btn_like (user_name) {
+    console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function cadastrar():");
+    var instrucao = `
+    insert into curtida (fk_musica, fk_usuario) 
+    select 20, id from usuario where nome = '${user_name}'; 
+    select * from curtida;
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao);
+}
+
+function btn_like1 (user_name) {
+    console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function cadastrar():");
+    var instrucao = `
+    insert into curtida (fk_musica, fk_usuario) 
+    select 21, id from usuario where nome = '${user_name}'; 
+    select * from curtida;
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao);
+}
+
+function btn_like2 (user_name) {
+    console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function cadastrar():");
+    var instrucao = `
+    insert into curtida (fk_musica, fk_usuario) 
+    select 22, id from usuario where nome = '${user_name}'; 
+    select * from curtida;
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao);
+}
+
+
+module.exports = {
+    btn_like,
+    btn_like1,
+    btn_like2
+};
+
+routes
+
+var express = require("express");
+var router = express.Router();
+
+var curtidaController = require("../controllers/curtidaController");
+
+router.post("/btn_like", function (req, res) {
+    curtidaController.btn_like(req, res);
+});
+
+router.post("/btn_like1", function (req, res) {
+    curtidaController.btn_like1(req, res);
+});
+
+router.post("/btn_like2", function (req, res) {
+    curtidaController.btn_like2(req, res);
+});
+
+
+module.exports = router;

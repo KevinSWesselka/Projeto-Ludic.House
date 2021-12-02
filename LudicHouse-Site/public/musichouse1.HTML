@@ -23,7 +23,6 @@
 		<nav class="menu">
 			<ul>
 				<li ><a href="./index.html">House</a></li>
-				<li><a href="#">Tutorial</a></li>
 				<li><a href="./historia.HTML">Story</a></li>
                 <li class="ativo"><a href="./musichouse.HTML">.Music House</a></li>
 				<li><a href="./login.html">Login</a></li>
@@ -313,9 +312,9 @@ Aprenda a tocar a musica <b>Noragami Aragoto - 'Kyouran Hey Kids!!':</b>
     var play_on = false
     var cont_play = 0
     var cont_like = 0
-    var nome_music = 'Noragami Aragoto - Kyouran Hey Kids!!';
+    var musi1 = document.getElementById('musica1')
 
-    function btn_play1(){
+    function btn_play(){
         play_on = true
             cont_play++
             if ( play_on == true){ 
@@ -328,6 +327,7 @@ Aprenda a tocar a musica <b>Noragami Aragoto - 'Kyouran Hey Kids!!':</b>
                     <span/>`
             }
     } 
+
 
     function btn_pause(){
         play_on = false
@@ -355,33 +355,6 @@ Aprenda a tocar a musica <b>Noragami Aragoto - 'Kyouran Hey Kids!!':</b>
                         </button>
                     <span/>`;
                     quantidade_like.innerHTML = `${cont_like}`
-
-                        fetch("/curtida/btn_like1", {
-                            method: "POST",
-                            headers: {
-                                "Content-Type": "application/json"
-                            },
-                            body: JSON.stringify({
-                                like_onServer: like_onVar,
-                                music0Sever: music0,
-                                user_nameServer: user_name
-                            })
-                        }).then(function (resposta) {
-
-                            console.log("resposta: ", resposta);
-
-                            if (resposta.ok) {
-                                window.alert("Cadastro realizado com sucesso!");
-                                window.location = "login.html";
-                                limparFormulario();
-                            } else {
-                                throw ("Houve um erro ao tentar realizar o cadastro!");
-                            }
-                        }).catch(function (resposta) {
-                            console.log(`#ERRO: ${resposta}`);
-                        });
-
-                        return false;
                     }
             }
 

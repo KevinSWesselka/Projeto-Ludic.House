@@ -23,7 +23,6 @@
 		<nav class="menu">
 			<ul>
 				<li ><a href="./index.html">House</a></li>
-				<li><a href="#">Tutorial</a></li>
 				<li><a href="./historia.HTML">Story</a></li>
                 <li class="ativo"><a href="./musichouse.HTML">.Music House</a></li>
 				<li><a href="./login.html">Login</a></li>
@@ -301,9 +300,9 @@ E|--------------------------------------------------------------------|<br/>
     var play_on = false
     var cont_play = 0
     var cont_like = 0
-    var nome_music = 'Sword Art Online CROSSING FIELD';
+    var musi1 = document.getElementById('musica1')
 
-    function btn_play2(){
+    function btn_play(){
         play_on = true
             cont_play++
             if ( play_on == true){ 
@@ -342,34 +341,7 @@ E|--------------------------------------------------------------------|<br/>
                             <img src="./assest/img/like_ativo-removebg-preview.png" style="width: 4vw; margin-bottom: 30%; margin-right: 11px;" title='Retirar Curtida'>
                         </button>
                     <span/>`;
-
                     quantidade_like.innerHTML = `${cont_like}`
-
-                        fetch("/curtida/btn_like2", {
-                            method: "POST",
-                            headers: {
-                                "Content-Type": "application/json"
-                            },
-                            body: JSON.stringify({
-                                like_onServer: like_onVar,
-                                music0Sever: music0
-                            })
-                        }).then(function (resposta) {
-
-                            console.log("resposta: ", resposta);
-
-                            if (resposta.ok) {
-                                window.alert("Cadastro realizado com sucesso!");
-                                window.location = "login.html";
-                                limparFormulario();
-                            } else {
-                                throw ("Houve um erro ao tentar realizar o cadastro!");
-                            }
-                        }).catch(function (resposta) {
-                            console.log(`#ERRO: ${resposta}`);
-                        });
-
-                        return false;
                     }
             }
 
