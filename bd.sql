@@ -35,4 +35,8 @@ insert into musica values
 insert into usuario values
 (10, 'Braian', 'Braian@gmail.com', '12345', 'FinStyle');
 
+insert into curtida (fk_musica) values 
+(20),
+(21),
+(22);
 -- update favorito set curtiu = '${var}' where fk_usuario = '${var_u}' and fk_musica = '${var_m}';

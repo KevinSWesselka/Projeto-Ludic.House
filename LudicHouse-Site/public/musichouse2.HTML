@@ -276,7 +276,7 @@ E|--------------------------------------------------------------------|<br/>
             </p>
             <div class="player_function">
                 <span id="img_like">
-                    <button onclick="btn_like()">
+                    <button onclick="btn_like2()">
                         <img src="./assest/img/Lua_menor-removebg-preview.png" style="width: 4vw; margin-bottom: 30%; margin-right: 11px;" title="Curtir">
                     </button>
                 </span>
@@ -301,9 +301,9 @@ E|--------------------------------------------------------------------|<br/>
     var play_on = false
     var cont_play = 0
     var cont_like = 0
-    var musi1 = document.getElementById('musica1')
+    var nome_music = 'Sword Art Online CROSSING FIELD';
 
-    function btn_play(){
+    function btn_play2(){
         play_on = true
             cont_play++
             if ( play_on == true){ 
@@ -331,7 +331,8 @@ E|--------------------------------------------------------------------|<br/>
             }
     }
 
-    function btn_like(){
+    function btn_like2(){
+        var user_name = sessionStorage.NOME_USUARIO
         like_on = true
             cont_like++
             if ( like_on == true){ 
@@ -341,9 +342,36 @@ E|--------------------------------------------------------------------|<br/>
                             <img src="./assest/img/like_ativo-removebg-preview.png" style="width: 4vw; margin-bottom: 30%; margin-right: 11px;" title='Retirar Curtida'>
                         </button>
                     <span/>`;
+
                     quantidade_like.innerHTML = `${cont_like}`
+
+                        fetch("/curtida/btn_like2", {
+                            method: "POST",
+                            headers: {
+                                "Content-Type": "application/json"
+                            },
+                            body: JSON.stringify({
+                                like_onServer: like_onVar,
+                                music0Sever: music0
+                            })
+                        }).then(function (resposta) {
+
+                            console.log("resposta: ", resposta);
+
+                            if (resposta.ok) {
+                                window.alert("Cadastro realizado com sucesso!");
+                                window.location = "login.html";
+                                limparFormulario();
+                            } else {
+                                throw ("Houve um erro ao tentar realizar o cadastro!");
+                            }
+                        }).catch(function (resposta) {
+                            console.log(`#ERRO: ${resposta}`);
+                        });
+
+                        return false;
+                    }
             }
-    }
 
     function btn_removeL(){
         like_on = false
@@ -351,7 +379,7 @@ E|--------------------------------------------------------------------|<br/>
             if ( like_on == false){ 
                 img_like.innerHTML = `
                     <span class='player_function'>
-                    <button onclick="btn_like()">
+                    <button onclick="btn_like2()">
                             <img src="./assest/img/Lua_menor-removebg-preview.png" style="width: 4vw; margin-bottom: 30%; margin-right: 11px;" title="Curtir">
                         </button>
                     <span/>`

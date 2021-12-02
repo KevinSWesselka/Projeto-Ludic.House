@@ -22,6 +22,46 @@ function btn_like(req, res) {
             );
     }
 
+    function btn_like1(req, res) {
+        var fk_musica = req.body.nome_musicServer;
+            
+            curtidaModel.btn_like1(fk_musica)
+                .then(
+                    function (resultado) {
+                        res.json(resultado);
+                    }
+                ).catch(
+                    function (erro) {
+                        console.log(erro);
+                        console.log(
+                            "\nHouve um erro ao realizar o cadastro! Erro: ",
+                            erro.sqlMessage
+                        );
+                        res.status(500).json(erro.sqlMessage);
+                    }
+                );
+        }
+
+        function btn_like2(req, res) {
+            var fk_musica = req.body.nome_musicServer;
+                
+                curtidaModel.btn_like2(fk_musica)
+                    .then(
+                        function (resultado) {
+                            res.json(resultado);
+                        }
+                    ).catch(
+                        function (erro) {
+                            console.log(erro);
+                            console.log(
+                                "\nHouve um erro ao realizar o cadastro! Erro: ",
+                                erro.sqlMessage
+                            );
+                            res.status(500).json(erro.sqlMessage);
+                        }
+                    );
+            }
+
     function listar(req, res) {
     usuarioModel.listar()
         .then(function (resultado) {
@@ -41,5 +81,7 @@ function btn_like(req, res) {
 
 module.exports = {
     btn_like,
+    btn_like1,
+    btn_like2,
     listar
 }

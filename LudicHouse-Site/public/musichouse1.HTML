@@ -288,7 +288,7 @@ Aprenda a tocar a musica <b>Noragami Aragoto - 'Kyouran Hey Kids!!':</b>
             </p>
             <div class="player_function">
                 <span id="img_like">
-                    <button onclick="btn_like()">
+                    <button onclick="btn_like1()">
                         <img src="./assest/img/Lua_menor-removebg-preview.png" style="width: 4vw; margin-bottom: 30%; margin-right: 11px;" title="Curtir">
                     </button>
                 </span>
@@ -313,9 +313,9 @@ Aprenda a tocar a musica <b>Noragami Aragoto - 'Kyouran Hey Kids!!':</b>
     var play_on = false
     var cont_play = 0
     var cont_like = 0
-    var musi1 = document.getElementById('musica1')
+    var nome_music = 'Noragami Aragoto - Kyouran Hey Kids!!';
 
-    function btn_play(){
+    function btn_play1(){
         play_on = true
             cont_play++
             if ( play_on == true){ 
@@ -343,7 +343,8 @@ Aprenda a tocar a musica <b>Noragami Aragoto - 'Kyouran Hey Kids!!':</b>
             }
     }
 
-    function btn_like(){
+    function btn_like1(){
+        var user_name = sessionStorage.NOME_USUARIO
         like_on = true
             cont_like++
             if ( like_on == true){ 
@@ -354,8 +355,35 @@ Aprenda a tocar a musica <b>Noragami Aragoto - 'Kyouran Hey Kids!!':</b>
                         </button>
                     <span/>`;
                     quantidade_like.innerHTML = `${cont_like}`
+
+                        fetch("/curtida/btn_like1", {
+                            method: "POST",
+                            headers: {
+                                "Content-Type": "application/json"
+                            },
+                            body: JSON.stringify({
+                                like_onServer: like_onVar,
+                                music0Sever: music0,
+                                user_nameServer: user_name
+                            })
+                        }).then(function (resposta) {
+
+                            console.log("resposta: ", resposta);
+
+                            if (resposta.ok) {
+                                window.alert("Cadastro realizado com sucesso!");
+                                window.location = "login.html";
+                                limparFormulario();
+                            } else {
+                                throw ("Houve um erro ao tentar realizar o cadastro!");
+                            }
+                        }).catch(function (resposta) {
+                            console.log(`#ERRO: ${resposta}`);
+                        });
+
+                        return false;
+                    }
             }
-    }
 
     function btn_removeL(){
         like_on = false
@@ -363,7 +391,7 @@ Aprenda a tocar a musica <b>Noragami Aragoto - 'Kyouran Hey Kids!!':</b>
             if ( like_on == false){ 
                 img_like.innerHTML = `
                     <span class='player_function'>
-                    <button onclick="btn_like()">
+                    <button onclick="btn_like1()">
                             <img src="./assest/img/Lua_menor-removebg-preview.png" style="width: 4vw; margin-bottom: 30%; margin-right: 11px;" title="Curtir">
                         </button>
                     <span/>`

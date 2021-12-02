@@ -279,7 +279,6 @@ Preso dentro de mim<br/>
     var play_on = false
     var cont_play = 0
     var cont_like = 0
-    var musi1 = document.getElementById('musica1')
     var nome_music = 'Unravel Tokyo Ghoul';
 
     function btn_play(){
@@ -311,6 +310,7 @@ Preso dentro de mim<br/>
     }
 
     function btn_like(){
+        var user_name = sessionStorage.NOME_USUARIO
         like_on = true
             cont_like++
             if ( like_on == true){ 
